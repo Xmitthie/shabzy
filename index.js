@@ -11,6 +11,9 @@ require("./conexion");
 config();
 
 const { error } = require('./commands/lib/util')
+const Member = require("./models/member")
+const Owner = require("./models/owner")
+const Blacklist = require("./models/blacklist")
 
 client.commands = new Collection();
 
@@ -26,6 +29,7 @@ for (const folder of commandFolder) {
 }
 
 client.on("ready", () => {
+  console.log(`${client.user.tag} ready!`)
   client.user.setPresence({
     status: "dnd",
     game: {
