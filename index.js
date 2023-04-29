@@ -43,7 +43,7 @@ client.on('messageCreate', async (message) => {
     const usOwner = await Owner.findOne({ userId: message.author.id })
     const usBlock = await Blacklist.findOne({ userId: message.author.id })
 
-    const prefix = '$';
+    const prefix = '7';
     if (!message.content.startsWith(prefix)) return;
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift();
