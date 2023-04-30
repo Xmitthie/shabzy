@@ -1,10 +1,10 @@
 const { EmbedBuilder } = require("discord.js");
 const Member = require("../../models/member");
+const Owner = require("../../models/owner")
 const { error, hershell, success } = require("../lib/util");
 module.exports = {
-  name: "memberAdd",
+  name: "permsOut",
   description: "asd",
-  owner: true,
   run: async (client, message, args) => {
 
     if(message.author.id !== hershell) return;
@@ -15,16 +15,11 @@ module.exports = {
 
     const user = await client.users.fetch(id)
 
-    const data = await Member.findOne({ userId: id })
-    if(data) return error(message, 'This user is already member!')
-    if(!data){
-      const nuevo = new Member({
-        userId: user.id,
-        username: user.username,
-        date: new Date()
-      });
-      await nuevo.save();
-      return success(message, `**${user.username} now has member permissions!`)
-    };
+    const data = await Owner.findOne({ userId: id })
+    if(!data) return error(message, 'This user never a had owner perms!')
+
+    await Owner.deleteMany({ userId: user.id })
+
+      return success(message, `**${user.username}** has been removed from the owners!`)
   },
 };

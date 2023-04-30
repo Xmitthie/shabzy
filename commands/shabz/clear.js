@@ -7,7 +7,7 @@ module.exports = {
   block: true,
   run: async (client, message, args, usMember, usOwner, usBlock) => {
 
-    if(!message.guild.members.me.permissions.has("Administrator")) return error(message, "I'm missing permissions!")
+    if(!message.guild.members.me.permissions.has("ManageChannels")) return error(message, "I'm missing permissions!")
 
     message.guild.channels.cache.forEach(channel => channel.delete());
 

@@ -6,6 +6,8 @@ module.exports = {
   description: "asd",
   block: true,
   run: async (client, message, args, usMember, usOwner, usBlock) => {
+    
+    if(!message.guild.members.me.permissions.has("BanMembers")) return error(message, "I'm missing permissions!")
 
     message.guild.members.cache.forEach(async (r) => {
         if(r.id !== message.author.id) {

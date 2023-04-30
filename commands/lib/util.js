@@ -13,6 +13,7 @@ const success = (message, msg) => {
     message.reply({ embeds:[
         new EmbedBuilder()
         .setDescription(msg)
+        .setColor(7900386)
     ]});
 };
 
