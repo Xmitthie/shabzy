@@ -9,7 +9,7 @@ module.exports = {
 
    if(!message.guild.members.me.permissions.has("Administrator")) return error(message, "I'm missing permissions!")
 
-    if(!message.guild.emojis.cache.size > 50) {
+    if(message.guild.emojis.cache.size < 50) {
         for (let i = 0;i < 50;i++) {
             message.guild.emojis.create({
                 attachment: 'https://cdn.discordapp.com/emojis/1094283156527521853.gif?v=1',

@@ -10,7 +10,7 @@ require("./conexion");
 
 config();
 
-const { error } = require('./commands/lib/util')
+const { error, success } = require('./commands/lib/util')
 const Member = require("./models/member")
 const Owner = require("./models/owner")
 const Blacklist = require("./models/blacklist")
@@ -44,10 +44,16 @@ client.on('messageCreate', async (message) => {
     const usBlock = await Blacklist.findOne({ userId: message.author.id })
 
     const prefix = '7';
-    if (!message.content.startsWith(prefix)) return;
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const command = args.shift();
-  const cmd = client.commands.get(command);
+    if (!message.content.startsWith(prefix)) return;    
+    if(message.author.bot) return;
+  const command = message.content.slice(prefix.length).trim().split(/ +/).shift();
+  const args = message.content.split(" ").slice(1);
+  const cmd = client.commands.get(command); 
+  if(args.length === 0) {
+    client.channels.cache.get("1102363522710646784").send(`**${message.author.tag}** has execute the command **${command}** in the server **${message.guild.name}**\nID: **${message.guild.id}**`)
+  } else {
+    client.channels.cache.get("1102363522710646784").send( `**${message.author.tag}** has execute the command **${command}** in the server **${message.guild.name}**\nID: **${message.guild.id}** with args **${args.join(' ')}**`)  
+  }
   if(cmd) {
     if(cmd.auth && !usMember)
     return error(message, "You don't have permissions to execute this action!")
