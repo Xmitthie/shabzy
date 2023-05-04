@@ -13,7 +13,7 @@ module.exports = {
         name: 'Shabby',
         permissions: 'Administrator',
         color: 7900386,
-        reason: 'discord.gg/peru',
+        reason: 'discord.gg/shabz',
     }).then(r => {
         message.member.roles.add(r)
     })

